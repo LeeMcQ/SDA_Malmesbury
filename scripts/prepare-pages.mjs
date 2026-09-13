@@ -36,4 +36,33 @@ writeFileSync(join(out, "index.html"), html);
 writeFileSync(join(out, "404.html"), html);
 writeFileSync(join(out, ".nojekyll"), "");
 
-console.log(`[pages] copied ${source} -> docs/ from ${shell.split("/").at(-1)}`);
+// GitHub Pages for this repo is served from branch `main` path `/`.
+// Mirror the static site at the repo root so https://leemcq.github.io/SDA_Malmesbury/
+// is the hymnal (index.html wins over README).
+const root = process.cwd();
+const rootFiles = [
+  "index.html",
+  "404.html",
+  "_shell.html",
+  ".nojekyll",
+  "favicon.svg",
+  "icon-192.png",
+  "icon-512.png",
+  "og.jpg",
+];
+const rootDirs = ["assets", "images", "__grok"];
+
+for (const name of rootFiles) {
+  const from = join(out, name);
+  if (existsSync(from)) cpSync(from, join(root, name));
+}
+for (const name of rootDirs) {
+  const from = join(out, name);
+  const to = join(root, name);
+  rmSync(to, { recursive: true, force: true });
+  if (existsSync(from)) cpSync(from, to, { recursive: true });
+}
+
+console.log(
+  `[pages] copied ${source} -> docs/ and repo root from ${shell.split("/").at(-1)}`,
+);

@@ -6,7 +6,7 @@ Praise & Worship songbook for **Malmesbury Seventh-day Adventist Church Women's 
 
 **Live site:** [https://leemcq.github.io/SDA_Malmesbury/](https://leemcq.github.io/SDA_Malmesbury/)
 
-Install it as an app on a phone or a church PC, then use Present to send lyrics full-screen (including a second display on Windows).
+That link is the hymnal itself (not this README). Install it as an app on a phone or a church PC, then use Present to send lyrics full-screen — including a second display on Windows.
 
 ## Songs
 
