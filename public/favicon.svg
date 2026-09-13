@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Malmesbury Praise">
+  <rect width="32" height="32" rx="7" fill="#1E4A6E"/>
+  <path fill="#F4EFE4" d="M5.2 11.1c0-.45.34-.82.78-.92 3.1-.7 6.2.15 9.62.72v12.55c-3.55-.7-6.7-1.55-10.05-.72-.5.12-.9-.22-.9-.72z"/>
+  <path fill="#EDE6D6" d="M26.8 11.1c0-.45-.34-.82-.78-.92-3.1-.7-6.2.15-9.62.72v12.55c3.55-.7 6.7-1.55 10.05-.72.5.12.9-.22.9-.72z"/>
+  <path stroke="#1C2834" stroke-width="1.35" stroke-linecap="round" d="M16 10.55v13.05"/>
+</svg>
