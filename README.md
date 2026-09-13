@@ -4,6 +4,10 @@ Praise & Worship songbook for **Malmesbury Seventh-day Adventist Church Women's 
 
 48 numbered hymns from the printed booklet — search, save, plan a Sabbath set, and present lyrics to the room.
 
+**Live site:** [https://leemcq.github.io/SDA_Malmesbury/](https://leemcq.github.io/SDA_Malmesbury/)
+
+Install it as an app on a phone or a church PC, then use Present to send lyrics full-screen (including a second display on Windows).
+
 ## Songs
 
 | Range | Collection |
@@ -19,6 +23,8 @@ npm run dev
 ```
 
 Then open the app at the printed local URL. Night reading, set lists, and saved songs stay in the browser.
+
+The GitHub Pages site is a static copy of the hymnal. Search, favorites, planner, and presentation all work in the browser. The AI hymn finder needs a server and is available when you run the app locally.
 
 ## Stack
 

@@ -21,7 +21,7 @@ export function SongCard({ song, index = 0 }: { song: Song; index?: number }) {
       <Link
         to="/songs/$slug"
         params={{ slug: song.id }}
-        className="flex min-w-0 gap-3 pr-16"
+        className="flex min-h-16 min-w-0 gap-3 pr-20"
       >
         <span className="w-10 shrink-0 font-display text-2xl italic leading-none text-navy tabular-nums">
           {displayNumber(song)}
@@ -35,11 +35,11 @@ export function SongCard({ song, index = 0 }: { song: Song; index?: number }) {
           </span>
         </span>
       </Link>
-      <div className="absolute top-3 right-3 flex items-center">
+      <div className="absolute top-2 right-2 flex items-center">
         <Button
           variant="ghost"
           size="icon"
-          className="size-10 text-muted hover:text-navy"
+          className="size-11 text-muted hover:text-navy"
           aria-label={inPlanner ? "Already in set list" : "Add to set list"}
           onClick={() => addToPlanner(song.id)}
         >
@@ -48,7 +48,7 @@ export function SongCard({ song, index = 0 }: { song: Song; index?: number }) {
         <Button
           variant="ghost"
           size="icon"
-          className="size-10 text-muted hover:text-navy"
+          className="size-11 text-muted hover:text-navy"
           aria-label={favorite ? "Remove from saved" : "Save song"}
           onClick={() => toggleFavorite(song.id)}
         >

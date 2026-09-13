@@ -49,6 +49,7 @@ html.night {
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
     background: var(--color-paper);
     color: var(--color-ink);
   }
@@ -77,11 +78,31 @@ html.night {
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  a {
+    touch-action: manipulation;
   }
 
   ::selection {
     background: color-mix(in oklab, var(--color-navy) 22%, transparent);
   }
+
+  input,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+html.presenting,
+html.presenting body {
+  background: var(--color-shade);
+  color: var(--color-on-shade);
+  overflow: hidden;
+  overscroll-behavior: none;
+  height: 100dvh;
+  touch-action: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -140,7 +161,7 @@ html.night {
 .lyric-block {
   font-family: var(--font-display);
   font-optical-sizing: auto;
-  font-size: calc(1.2rem * var(--lyric-scale, 1));
+  font-size: calc(1.15rem * var(--lyric-scale, 1));
   line-height: 1.55;
   font-weight: 450;
 }
@@ -148,6 +169,39 @@ html.night {
 @media (min-width: 640px) {
   .lyric-block {
     font-size: calc(1.35rem * var(--lyric-scale, 1));
+  }
+}
+
+.present-lyric {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.22;
+  text-wrap: balance;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+.present-lyric-in {
+  animation: fade-up 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.present-stage {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.present-copy {
+  padding-top: max(2.75rem, env(safe-area-inset-top));
+  padding-bottom: max(2.5rem, env(safe-area-inset-bottom));
+}
+
+@media (min-height: 540px) {
+  .present-copy {
+    padding-top: max(3.5rem, env(safe-area-inset-top));
+    padding-bottom: max(3.25rem, env(safe-area-inset-bottom));
   }
 }
 

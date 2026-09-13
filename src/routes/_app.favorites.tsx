@@ -23,7 +23,7 @@ function FavoritesPage() {
       <p className="font-sans text-[11px] font-medium tracking-[0.22em] text-muted uppercase">
         Kept close
       </p>
-      <h1 className="mt-2 font-display text-4xl font-medium tracking-tight">Saved songs</h1>
+      <h1 className="mt-2 font-display text-[1.85rem] font-medium tracking-tight sm:text-4xl">Saved songs</h1>
       <p className="mt-2 max-w-md font-serif text-base italic text-muted">
         Hearts stay on this device, ready for the next Sabbath.
       </p>

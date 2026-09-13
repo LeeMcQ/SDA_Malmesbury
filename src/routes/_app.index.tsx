@@ -13,6 +13,7 @@ import {
   type Song,
 } from "@/lib/songs";
 import { useAppStore } from "@/lib/store";
+import { publicUrl } from "@/lib/public-url";
 
 export const Route = createFileRoute("/_app/")({
   component: HomePage,
@@ -50,24 +51,24 @@ function HomePage() {
       <section className="relative sm:px-4 sm:pt-4">
         <div className="relative overflow-hidden sm:rounded-[28px]">
           <img
-            src="/images/church-exterior.jpg"
+            src={publicUrl("images/church-exterior.jpg")}
             alt="A white country church in the Swartland wheat fields"
-            className="h-72 w-full object-cover sm:h-[420px]"
+            className="h-[min(16.5rem,58svh)] w-full object-cover sm:h-[420px]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-shade via-shade/55 to-shade/15" />
-          <div className="absolute inset-x-0 bottom-0 p-6 text-on-shade sm:p-10">
+          <div className="absolute inset-x-0 bottom-0 p-5 text-on-shade sm:p-10">
             <div className="stagger-in max-w-xl">
               <p className="font-sans text-[11px] font-medium tracking-[0.28em] uppercase">
                 Women's Ministries
               </p>
-              <h1 className="mt-2 font-display text-4xl font-medium tracking-tight sm:text-6xl">
+              <h1 className="mt-1 font-display text-[2.15rem] font-medium tracking-tight sm:text-6xl">
                 Praise & Worship
               </h1>
-              <p className="mt-3 max-w-md font-serif text-base italic text-on-shade/85 sm:text-lg">
+              <p className="mt-2 max-w-md font-serif text-sm italic text-on-shade/85 sm:mt-3 sm:text-lg">
                 Malmesbury Seventh-day Adventist Church — a hymnal for Sabbath,
                 midweek, and the quiet hours in between.
               </p>
-              <p className="mt-4 font-sans text-xs tracking-[0.18em] uppercase text-on-shade/70">
+              <p className="mt-3 font-sans text-xs tracking-[0.18em] uppercase text-on-shade/70">
                 {SONGS.length} songs · Western Cape
               </p>
             </div>
@@ -75,7 +76,7 @@ function HomePage() {
         </div>
       </section>
 
-      <div className="px-4 pt-6">
+      <div className="px-4 pt-5">
         <label className="relative block">
           <Search className="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted" />
           <input
@@ -95,10 +96,10 @@ function HomePage() {
         <Link
           to="/songs/$slug"
           params={{ slug: today.id }}
-          className="mt-3 flex overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-border)]"
+          className="mt-3 flex min-h-24 overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-border)]"
         >
           <img
-            src="/images/hymnal-still.jpg"
+            src={publicUrl("images/hymnal-still.jpg")}
             alt=""
             className="hidden w-36 object-cover sm:block"
           />
@@ -106,7 +107,7 @@ function HomePage() {
             <p className="font-display text-sm italic text-navy">
               No. {today.number}
             </p>
-            <h2 className="mt-1 font-display text-2xl font-medium tracking-tight">
+            <h2 className="mt-1 font-display text-2xl font-medium tracking-tight text-balance">
               {today.title}
             </h2>
             <p className="mt-2 truncate font-serif text-sm italic text-muted">
@@ -121,13 +122,13 @@ function HomePage() {
           <p className="font-sans text-[11px] font-medium tracking-[0.22em] text-muted uppercase">
             Recently opened
           </p>
-          <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+          <div className="-mx-4 mt-3 flex gap-2 overflow-x-auto px-4 pb-1">
             {recent.map((song) => (
               <Link
                 key={song.id}
                 to="/songs/$slug"
                 params={{ slug: song.id }}
-                className="shrink-0 rounded-full bg-card px-4 py-2 font-sans text-sm text-ink shadow-[var(--shadow-border)]"
+                className="inline-flex h-11 shrink-0 items-center rounded-full bg-card px-4 font-sans text-sm text-ink shadow-[var(--shadow-border)]"
               >
                 {song.title}
               </Link>
@@ -141,14 +142,14 @@ function HomePage() {
       </div>
 
       <section className="px-4 pt-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="font-display text-2xl font-medium tracking-tight">The collection</h2>
-              <p className="mt-1 font-sans text-sm text-muted">
-                {songs.length} {songs.length === 1 ? "song" : "songs"}
-              </p>
-            </div>
-          <div className="flex rounded-full bg-card p-1 shadow-[var(--shadow-border)]">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="font-display text-2xl font-medium tracking-tight">The collection</h2>
+            <p className="mt-1 font-sans text-sm text-muted">
+              {songs.length} {songs.length === 1 ? "song" : "songs"}
+            </p>
+          </div>
+          <div className="flex w-full rounded-full bg-card p-1 shadow-[var(--shadow-border)] sm:w-auto">
             {FILTERS.map((item) => (
               <button
                 key={item.id}
@@ -156,8 +157,8 @@ function HomePage() {
                 onClick={() => setFilter(item.id)}
                 className={
                   filter === item.id
-                    ? "rounded-full bg-navy px-3 py-1.5 font-sans text-xs font-medium text-paper"
-                    : "rounded-full px-3 py-1.5 font-sans text-xs font-medium text-muted"
+                    ? "min-h-11 flex-1 rounded-full bg-navy px-3 font-sans text-xs font-medium text-paper sm:flex-none sm:px-4"
+                    : "min-h-11 flex-1 rounded-full px-3 font-sans text-xs font-medium text-muted sm:flex-none sm:px-4"
                 }
               >
                 {item.label}

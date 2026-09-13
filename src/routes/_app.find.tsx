@@ -59,7 +59,7 @@ function FindPage() {
       <p className="font-sans text-[11px] font-medium tracking-[0.22em] text-muted uppercase">
         Song finder
       </p>
-      <h1 className="mt-2 font-display text-4xl font-medium tracking-tight">
+      <h1 className="mt-2 font-display text-[1.85rem] font-medium tracking-tight sm:text-4xl">
         What is the hour asking for?
       </h1>
       <p className="mt-2 max-w-lg font-serif text-base italic text-muted">
@@ -104,7 +104,7 @@ function FindPage() {
           placeholder="Four songs for a quiet Friday evening of prayer…"
           className="mt-2 w-full resize-none rounded-2xl bg-card p-4 font-sans text-base text-ink shadow-[var(--shadow-border)] outline-none placeholder:text-muted"
         />
-        <Button type="submit" className="mt-3" disabled={pending || !theme.trim()}>
+        <Button type="submit" className="mt-3 w-full sm:w-auto" disabled={pending || !theme.trim()}>
           {pending ? <LoaderCircle className="size-4 animate-spin" /> : <Compass className="size-4" />}
           {pending ? "Listening…" : "Find songs"}
         </Button>
@@ -119,7 +119,7 @@ function FindPage() {
               setTheme(prompt);
               void ask(prompt);
             }}
-            className="rounded-full bg-card px-3 py-2 text-left font-sans text-xs text-ink shadow-[var(--shadow-border)]"
+            className="min-h-11 rounded-full bg-card px-3.5 py-2 text-left font-sans text-xs text-ink shadow-[var(--shadow-border)]"
           >
             {prompt}
           </button>
@@ -142,7 +142,7 @@ function FindPage() {
               if (!song) return null;
               return (
                 <li key={pick.id} className="rounded-2xl bg-card p-4 shadow-[var(--shadow-border)]">
-                  <Link to="/songs/$slug" params={{ slug: song.id }} className="block">
+                  <Link to="/songs/$slug" params={{ slug: song.id }} className="block min-h-11">
                     <p className="font-display text-sm italic text-navy">
                       {index + 1}. No. {song.number}
                     </p>

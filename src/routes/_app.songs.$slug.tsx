@@ -2,9 +2,10 @@
 
 import { useEffect } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ChevronLeft, ChevronRight, Heart, ListPlus, Maximize2, Share2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart, ListPlus, Share2 } from "lucide-react";
 import { toast } from "sonner";
 import { FontScaleControl, LyricsView, copyLyrics } from "@/components/lyrics-view";
+import { PresentButton } from "@/components/present-button";
 import { Button } from "@/components/ui/button";
 import { displayNumber, getSong, neighbors } from "@/lib/songs";
 import { useAppStore } from "@/lib/store";
@@ -66,7 +67,7 @@ function SongPage() {
         <p className="font-display text-sm italic text-navy">
           {`No. ${displayNumber(song)}`}
         </p>
-        <h1 className="mt-2 font-display text-4xl font-medium tracking-tight sm:text-5xl">
+        <h1 className="mt-2 px-1 font-display text-[1.85rem] font-medium tracking-tight text-balance sm:text-5xl">
           {song.title}
         </h1>
         <div className="mt-3 flex flex-wrap justify-center gap-2">
@@ -81,9 +82,11 @@ function SongPage() {
         </div>
       </header>
 
-      <div className="no-print mx-auto mt-6 flex max-w-lg flex-wrap justify-center gap-2">
+      <div className="no-print mx-auto mt-6 grid max-w-lg grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
+        <PresentButton slug={song.id} className="w-full sm:w-auto" />
         <Button
           variant={favorite ? "primary" : "secondary"}
+          className="w-full sm:w-auto"
           onClick={() => toggleFavorite(song.id)}
         >
           <Heart className={favorite ? "size-4 fill-current" : "size-4"} />
@@ -91,6 +94,7 @@ function SongPage() {
         </Button>
         <Button
           variant="secondary"
+          className="w-full sm:w-auto"
           onClick={() => {
             addToPlanner(song.id);
             toast.success(inPlanner ? "Already in the set list" : "Added to set list");
@@ -99,17 +103,14 @@ function SongPage() {
           <ListPlus className="size-4" />
           Set list
         </Button>
-        <Button variant="secondary" asChild>
-          <Link to="/present/$slug" params={{ slug: song.id }}>
-            <Maximize2 className="size-4" />
-            Present
-          </Link>
-        </Button>
-        <Button variant="secondary" onClick={share}>
+        <Button variant="secondary" className="w-full sm:w-auto" onClick={share}>
           <Share2 className="size-4" />
           Share
         </Button>
       </div>
+      <p className="no-print mx-auto mt-3 max-w-lg text-center font-serif text-sm italic text-muted">
+        Project this hymn full screen — on this PC or the hall display.
+      </p>
 
       <div className="mt-10 mb-8">
         <LyricsView song={song} />
@@ -120,7 +121,7 @@ function SongPage() {
           <Link
             to="/songs/$slug"
             params={{ slug: prev.id }}
-            className="min-w-0 flex-1 rounded-2xl p-3 hover:bg-paper-deep"
+            className="min-h-16 min-w-0 flex-1 rounded-2xl p-3 hover:bg-paper-deep"
           >
             <span className="flex items-center gap-1 font-sans text-[11px] tracking-wide text-muted uppercase">
               <ChevronLeft className="size-3.5" /> Previous
@@ -134,7 +135,7 @@ function SongPage() {
           <Link
             to="/songs/$slug"
             params={{ slug: next.id }}
-            className="min-w-0 flex-1 rounded-2xl p-3 text-right hover:bg-paper-deep"
+            className="min-h-16 min-w-0 flex-1 rounded-2xl p-3 text-right hover:bg-paper-deep"
           >
             <span className="flex items-center justify-end gap-1 font-sans text-[11px] tracking-wide text-muted uppercase">
               Next <ChevronRight className="size-3.5" />

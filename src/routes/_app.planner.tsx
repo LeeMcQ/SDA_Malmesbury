@@ -3,6 +3,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronDown, ChevronUp, ListMusic, Maximize2, Share2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { PresentButton } from "@/components/present-button";
 import { Button } from "@/components/ui/button";
 import { displayNumber, firstLine, SONGS } from "@/lib/songs";
 import { useAppStore } from "@/lib/store";
@@ -49,7 +50,7 @@ function PlannerPage() {
       <p className="font-sans text-[11px] font-medium tracking-[0.22em] text-muted uppercase">
         Sabbath order
       </p>
-      <h1 className="mt-2 font-display text-4xl font-medium tracking-tight">Set list</h1>
+      <h1 className="mt-2 font-display text-[1.85rem] font-medium tracking-tight sm:text-4xl">Set list</h1>
       <p className="mt-2 max-w-md font-serif text-base italic text-muted">
         Gather an opening, a prayer song, and a close — then present it to the
         room.
@@ -68,17 +69,15 @@ function PlannerPage() {
       ) : (
         <>
           <div className="mt-6 flex flex-wrap gap-2">
-            <Button asChild>
-              <Link to="/present/$slug" params={{ slug: songs[0]!.id }} search={{ set: "1" }}>
-                <Maximize2 className="size-4" />
-                Present set
-              </Link>
-            </Button>
-            <Button variant="secondary" onClick={shareSet}>
+            <PresentButton slug={songs[0]!.id} set className="w-full sm:w-auto">
+              <Maximize2 className="size-4" />
+              Present set
+            </PresentButton>
+            <Button variant="secondary" onClick={shareSet} className="min-h-11 flex-1 sm:flex-none">
               <Share2 className="size-4" />
               Share
             </Button>
-            <Button variant="ghost" onClick={clearPlanner}>
+            <Button variant="ghost" onClick={clearPlanner} className="min-h-11 flex-1 sm:flex-none">
               <Trash2 className="size-4" />
               Clear
             </Button>
@@ -88,9 +87,9 @@ function PlannerPage() {
             {songs.map((song, index) => (
               <li
                 key={song.id}
-                className="flex items-center gap-3 rounded-2xl bg-card p-3 shadow-[var(--shadow-border)]"
+                className="flex items-center gap-2 rounded-2xl bg-card p-3 shadow-[var(--shadow-border)] sm:gap-3"
               >
-                <span className="w-8 text-center font-display text-xl italic text-navy tabular-nums">
+                <span className="w-7 shrink-0 text-center font-display text-xl italic text-navy tabular-nums sm:w-8">
                   {index + 1}
                 </span>
                 <Link
@@ -105,34 +104,36 @@ function PlannerPage() {
                     {firstLine(song)}
                   </span>
                 </Link>
-                <div className="flex shrink-0 flex-col">
+                <div className="flex shrink-0 items-center">
+                  <div className="flex flex-col">
+                    <button
+                      type="button"
+                      aria-label="Move up"
+                      className="flex size-11 items-center justify-center text-muted disabled:opacity-30"
+                      disabled={index === 0}
+                      onClick={() => movePlanner(song.id, -1)}
+                    >
+                      <ChevronUp className="size-4" />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Move down"
+                      className="flex size-11 items-center justify-center text-muted disabled:opacity-30"
+                      disabled={index === songs.length - 1}
+                      onClick={() => movePlanner(song.id, 1)}
+                    >
+                      <ChevronDown className="size-4" />
+                    </button>
+                  </div>
                   <button
                     type="button"
-                    aria-label="Move up"
-                    className="flex size-10 items-center justify-center text-muted disabled:opacity-30"
-                    disabled={index === 0}
-                    onClick={() => movePlanner(song.id, -1)}
+                    aria-label="Remove from set list"
+                    className="flex size-11 items-center justify-center text-muted"
+                    onClick={() => removeFromPlanner(song.id)}
                   >
-                    <ChevronUp className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Move down"
-                    className="flex size-10 items-center justify-center text-muted disabled:opacity-30"
-                    disabled={index === songs.length - 1}
-                    onClick={() => movePlanner(song.id, 1)}
-                  >
-                    <ChevronDown className="size-4" />
+                    <Trash2 className="size-4" />
                   </button>
                 </div>
-                <button
-                  type="button"
-                  aria-label="Remove from set list"
-                  className="flex size-10 items-center justify-center text-muted"
-                  onClick={() => removeFromPlanner(song.id)}
-                >
-                  <Trash2 className="size-4" />
-                </button>
               </li>
             ))}
           </ol>
