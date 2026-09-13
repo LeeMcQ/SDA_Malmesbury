@@ -48,34 +48,7 @@ function HomePage() {
 
   return (
     <div>
-      <section className="relative sm:px-4 sm:pt-4">
-        <div className="relative overflow-hidden sm:rounded-[28px]">
-          <img
-            src={publicUrl("images/church-exterior.jpg")}
-            alt="A white country church in the Swartland wheat fields"
-            className="h-[min(16.5rem,58svh)] w-full object-cover sm:h-[420px]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-shade via-shade/55 to-shade/15" />
-          <div className="absolute inset-x-0 bottom-0 p-5 text-on-shade sm:p-10">
-            <div className="stagger-in max-w-xl">
-              <p className="font-sans text-[11px] font-medium tracking-[0.28em] uppercase">
-                Women's Ministries
-              </p>
-              <h1 className="mt-1 font-display text-[2.15rem] font-medium tracking-tight sm:text-6xl">
-                Praise & Worship
-              </h1>
-              <p className="mt-2 max-w-md font-serif text-sm italic text-on-shade/85 sm:mt-3 sm:text-lg">
-                Malmesbury Seventh-day Adventist Church — a hymnal for Sabbath,
-                midweek, and the quiet hours in between.
-              </p>
-              <p className="mt-3 font-sans text-xs tracking-[0.18em] uppercase text-on-shade/70">
-                {SONGS.length} songs · Western Cape
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <h1 className="sr-only">Malmesbury Praise songbook</h1>
       <div className="px-4 pt-5">
         <label className="relative block">
           <Search className="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted" />

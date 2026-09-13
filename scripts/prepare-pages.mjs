@@ -7,6 +7,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { join } from "node:path";
+import { pagesRootDirs, pagesRootFiles } from "./pages-root.mjs";
 
 const sources = [".vercel/output/static", "dist", ".output/public"];
 const source = sources.find((dir) => existsSync(join(process.cwd(), dir)));
@@ -40,23 +41,12 @@ writeFileSync(join(out, ".nojekyll"), "");
 // Mirror the static site at the repo root so https://leemcq.github.io/SDA_Malmesbury/
 // is the hymnal (index.html wins over README).
 const root = process.cwd();
-const rootFiles = [
-  "index.html",
-  "404.html",
-  "_shell.html",
-  ".nojekyll",
-  "favicon.svg",
-  "icon-192.png",
-  "icon-512.png",
-  "og.jpg",
-];
-const rootDirs = ["assets", "images", "__grok"];
 
-for (const name of rootFiles) {
+for (const name of pagesRootFiles) {
   const from = join(out, name);
   if (existsSync(from)) cpSync(from, join(root, name));
 }
-for (const name of rootDirs) {
+for (const name of pagesRootDirs) {
   const from = join(out, name);
   const to = join(root, name);
   rmSync(to, { recursive: true, force: true });
