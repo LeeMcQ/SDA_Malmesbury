@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { PwaRuntime } from "@/components/pwa-runtime";
 import { ThemeRoot } from "@/components/theme-root";
 import { publicUrl } from "@/lib/public-url";
 import appCss from "../styles.css?url";
@@ -30,7 +31,7 @@ export const Route = createRootRoute({
     links: [
       { rel: "icon", type: "image/svg+xml", href: publicUrl("favicon.svg") },
       { rel: "stylesheet", href: appCss },
-      { rel: "manifest", href: publicUrl("__grok/manifest.webmanifest") },
+      { rel: "manifest", href: publicUrl("__grok/manifest.json") },
       { rel: "apple-touch-icon", href: publicUrl("icon-192.png") },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com" },
@@ -51,6 +52,7 @@ function RootDocument() {
       </head>
       <body>
         <PreviewHostBridge />
+        <PwaRuntime />
         <AuthProvider>
           <ThemeRoot>
             <Outlet />

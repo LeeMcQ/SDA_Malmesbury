@@ -5,6 +5,7 @@ import { BookOpen, Compass, Heart, ListMusic, Moon, Sun } from "lucide-react";
 import { Toaster } from "sonner";
 import { HymnalMark } from "@/components/ornament";
 import { Button } from "@/components/ui/button";
+import { InstallApp } from "@/components/install-app";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/lib/store";
 
@@ -40,15 +41,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </span>
             </span>
           </Link>
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label={theme === "night" ? "Switch to paper light" : "Switch to night reading"}
-            onClick={toggleTheme}
-            className="size-11 shrink-0 text-navy"
-          >
-            {theme === "night" ? <Sun className="size-5" /> : <Moon className="size-5" />}
-          </Button>
+          <div className="flex items-center gap-0.5">
+            <InstallApp />
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label={theme === "night" ? "Switch to paper light" : "Switch to night reading"}
+              onClick={toggleTheme}
+              className="size-11 shrink-0 text-navy"
+            >
+              {theme === "night" ? <Sun className="size-5" /> : <Moon className="size-5" />}
+            </Button>
+          </div>
         </div>
       </header>
 

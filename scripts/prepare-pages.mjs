@@ -37,6 +37,47 @@ writeFileSync(join(out, "index.html"), html);
 writeFileSync(join(out, "404.html"), html);
 writeFileSync(join(out, ".nojekyll"), "");
 
+const pagesBase = "/SDA_Malmesbury/";
+const manifest = {
+  name: "Malmesbury Praise",
+  short_name: "Praise",
+  description:
+    "Praise & Worship songbook for Malmesbury Seventh-day Adventist Church Women's Ministries.",
+  id: pagesBase,
+  start_url: pagesBase,
+  scope: pagesBase,
+  display: "standalone",
+  display_override: ["standalone", "minimal-ui"],
+  background_color: "#F4EFE4",
+  theme_color: "#1E4A6E",
+  lang: "en",
+  dir: "ltr",
+  orientation: "any",
+  icons: [
+    {
+      src: `${pagesBase}icon-192.png`,
+      sizes: "192x192",
+      type: "image/png",
+      purpose: "any",
+    },
+    {
+      src: `${pagesBase}icon-512.png`,
+      sizes: "512x512",
+      type: "image/png",
+      purpose: "any",
+    },
+    {
+      src: `${pagesBase}__grok/icon-180.png`,
+      sizes: "180x180",
+      type: "image/png",
+    },
+  ],
+};
+const manifestJson = `${JSON.stringify(manifest, null, 2)}\n`;
+mkdirSync(join(out, "__grok"), { recursive: true });
+writeFileSync(join(out, "__grok/manifest.webmanifest"), manifestJson);
+writeFileSync(join(out, "__grok/manifest.json"), manifestJson);
+
 // GitHub Pages for this repo is served from branch `main` path `/`.
 // Mirror the static site at the repo root so https://leemcq.github.io/SDA_Malmesbury/
 // is the hymnal (index.html wins over README).

@@ -11,6 +11,7 @@ export const pagesRootFiles = [
   "icon-192.png",
   "icon-512.png",
   "og.jpg",
+  "sw.js",
 ];
 
 export const pagesRootDirs = ["assets", "images", "__grok"];
