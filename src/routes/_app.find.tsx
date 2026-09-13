@@ -32,15 +32,29 @@ function FindPage() {
   async function ask(prompt: string) {
     const text = prompt.trim();
     if (!text || pending) return;
+    if (typeof window !== "undefined" && window.location.hostname.endsWith("github.io")) {
+      setResult({
+        ok: false,
+        error:
+          "The themed finder is not available on this copy of the site. Search the collection above — every hymn is still here.",
+      });
+      return;
+    }
     setPending(true);
     setResult(null);
     try {
       const response = await recommendSongs({ data: { query: text } });
       setResult(response);
     } catch (error) {
+      const message = error instanceof Error ? error.message : "";
+      const staticHost = /404|405|501|Failed to fetch|NetworkError|Load failed|is not valid JSON|Unsupported method/i.test(
+        message,
+      );
       setResult({
         ok: false,
-        error: error instanceof Error ? error.message : "Could not find songs just then.",
+        error: staticHost
+          ? "The themed finder is not available on this copy of the site. Search the collection above — every hymn is still here."
+          : message || "Could not find songs just then.",
       });
     } finally {
       setPending(false);

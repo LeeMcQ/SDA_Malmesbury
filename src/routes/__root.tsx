@@ -24,6 +24,7 @@ export const Route = createRootRoute({
           "Praise & Worship songbook for Malmesbury Seventh-day Adventist Church Women's Ministries.",
       },
       { name: "theme-color", content: "#1E4A6E" },
+      { name: "apple-mobile-web-app-title", content: APP_NAME },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { name: "mobile-web-app-capable", content: "yes" },
@@ -47,7 +48,7 @@ export const Route = createRootRoute({
 function RootDocument() {
   return (
     <html lang="en" suppressHydrationWarning className="antialiased">
-      <head>
+      <head suppressHydrationWarning>
         <HeadContent />
       </head>
       <body>

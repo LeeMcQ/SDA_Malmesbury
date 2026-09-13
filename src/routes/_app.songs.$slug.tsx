@@ -42,11 +42,14 @@ function SongPage() {
         await navigator.share({ title: song.title, text });
         return;
       }
+    } catch {
+      /* cancelled or unsupported */
+    }
+    try {
       await navigator.clipboard.writeText(text);
       toast.success("Lyrics copied");
     } catch {
-      await navigator.clipboard.writeText(text);
-      toast.success("Lyrics copied");
+      toast.message("Could not copy lyrics just then.");
     }
   }
 

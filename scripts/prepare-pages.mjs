@@ -32,7 +32,11 @@ if (!shell) {
   process.exit(1);
 }
 
-const html = readFileSync(shell).toString("utf8").replaceAll("\u0000", "");
+const html = readFileSync(shell)
+  .toString("utf8")
+  .replaceAll("\u0000", "")
+  .replaceAll('="/__grok/', '="/SDA_Malmesbury/__grok/')
+  .replaceAll("='/__grok/", "='/SDA_Malmesbury/__grok/");
 writeFileSync(join(out, "index.html"), html);
 writeFileSync(join(out, "404.html"), html);
 writeFileSync(join(out, ".nojekyll"), "");
