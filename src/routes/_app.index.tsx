@@ -22,12 +22,13 @@ export const Route = createFileRoute("/_app/")({
   }),
 });
 
-type Filter = "all" | "numbered" | "additional";
+type Filter = "all" | "numbered" | "additional" | "choruses";
 
 const FILTERS: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
   { id: "numbered", label: "1–29" },
   { id: "additional", label: "30–48" },
+  { id: "choruses", label: "Choruses" },
 ];
 
 function HomePage() {
