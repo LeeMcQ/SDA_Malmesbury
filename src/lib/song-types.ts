@@ -6,7 +6,7 @@ export type Stanza = {
   lines: string[];
 };
 
-export type Collection = "numbered" | "additional";
+export type Collection = "numbered" | "additional" | "choruses";
 
 export type Song = {
   id: string;

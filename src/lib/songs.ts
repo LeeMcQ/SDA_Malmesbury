@@ -1,10 +1,11 @@
 import { ADDITIONAL_SONGS } from "@/data/additional-songs";
+import { CHORUS_SONGS } from "@/data/choruses";
 import { NUMBERED_SONGS } from "@/data/numbered-songs";
 import type { Song, Stanza } from "@/lib/song-types";
 
 export type { Song, Stanza } from "@/lib/song-types";
 
-export const SONGS: Song[] = [...NUMBERED_SONGS, ...ADDITIONAL_SONGS];
+export const SONGS: Song[] = [...NUMBERED_SONGS, ...ADDITIONAL_SONGS, ...CHORUS_SONGS];
 
 export const SONG_BY_ID: Record<string, Song> = Object.fromEntries(
   SONGS.map((song) => [song.id, song]),
